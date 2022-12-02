@@ -1,5 +1,5 @@
 import unittest
-from main import count_calories
+from day1.main import count_calories
 
 class oneElfLines(unittest.TestCase):
     def test_one_elf_one_load_line(self):
