@@ -45,4 +45,4 @@ Implementation:
 
 A `count_calories` function defined in `main.py` It takes a string as an argument and returns a tuple.
 The first member of the tuple is an integer denoting which elf has the highest calorie count(1-indexed for user readiblity), 
-and the second member is the total calorie count. Returns false if invalid or empty input
+and the second member is the total calorie count. Returns false if invalid or empty input. In the case of ties, the place of the earlier elf in sequence will take precedence.
