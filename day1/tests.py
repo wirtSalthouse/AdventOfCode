@@ -1,7 +1,7 @@
 import unittest
 from day1.main import count_calories
 
-class oneElfLines(unittest.TestCase):
+class ElfLines(unittest.TestCase):
     def test_one_elf_one_load_line(self):
         one_elf_line_1 = "5000"
         self.assertEqual(count_calories(one_elf_line_1), (1, 5000))
