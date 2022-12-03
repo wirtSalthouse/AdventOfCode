@@ -1,13 +1,14 @@
 def score(strategy, score_func):
-    score = 0
+    running_score = 0
     for strat in strategy.split('\n'):
         pair = strat.split()
-        score += score_func(pair)
-    return score
+        running_score += score_func(pair)
+    return running_score
 
 
 def rock_paper_scissors_score(strategy):
     return score(strategy, native_score)
+
 
 def native_score(pair):
     opp_number = ord(pair[0].upper()) - ord('A')
@@ -17,6 +18,7 @@ def native_score(pair):
     if (player_number + 1) % 3 == opp_number:
         return player_number + 1
     return player_number + 7
+
 
 def desired_score(pair):
     player_need = pair[1]
