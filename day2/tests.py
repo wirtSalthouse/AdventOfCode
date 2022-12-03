@@ -1,5 +1,6 @@
 import unittest
 from day2.main import rock_paper_scissors_score
+from day2.main import rock_paper_scissors_desired_score
 
 class RockPaperScissorsScores(unittest.TestCase):
 
@@ -56,6 +57,42 @@ class RockPaperScissorsScores(unittest.TestCase):
     def test_prompt_example_case_insentive(self):
         strategy = 'a Y\nB x\nC Z'
         self.assertEqual(rock_paper_scissors_score(strategy), 15)
+
+class RockPaperScissorsDesiredScores(unittest.TestCase):
+    def test_need_to_draw_rock_singleton(self):
+        self.assertEqual(rock_paper_scissors_desired_score('A Y'), 4)
+
+    def test_need_to_beat_rock_singleton(self):
+        #paper beats rock 2+ 6
+        self.assertEqual(rock_paper_scissors_desired_score('A Z'), 8)
+
+    def test_need_to_lose_rock_singleton(self):
+        #scissors loses rock 3 + 0
+        self.assertEqual(rock_paper_scissors_desired_score('A X'), 3)
+
+    def test_need_to_draw_paper_singleton(self):
+        #paper draws paper 2 + 3
+        self.assertEqual(rock_paper_scissors_desired_score('B Y'), 5)
+
+    def test_need_to_beat_paper_singleton(self):
+        #scissors beats paper 3 + 6
+        self.assertEqual(rock_paper_scissors_desired_score('B Z'), 9)
+
+    def test_need_to_lose_paper_singleton(self):
+        # rock loses to paper 1 + 0
+        self.assertEqual(rock_paper_scissors_desired_score('B X'), 1)
+
+    def test_need_to_draw_scissors_singleton(self):
+        #scissors-to-scissors 3 + 3
+        self.assertEqual(rock_paper_scissors_desired_score('C Y'), 6)
+
+    def test_need_to_beat_scissors_singleton(self):
+        #rock to scissors 1 + 6
+        self.assertEqual(rock_paper_scissors_desired_score('C Z'), 7)
+
+    def test_need_to_lose_scissors_singleton(self):
+        #paper to scissors 2 + 0
+        self.assertEqual(rock_paper_scissors_desired_score('C X'), 2)
 
 if __name__ == '__main__':
     unittest.main()
