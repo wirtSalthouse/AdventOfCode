@@ -14,6 +14,7 @@ class Elf:
     def has_more_calories(self, elf):
         return self.calories > elf.calories
 
+
 def count_calories(elf_line):
     if not elf_line:
         return False
@@ -38,5 +39,20 @@ def count_calories(elf_line):
     return most_calories_elf.to_tuple()
 
 
+def top_three_elves(elf_line):
+    loads = elf_line.split('\n')
+    cals = []
+    total = 0
+    for load in loads:
+        if load:
+            total += int(load)
+        else:
+            cals.append(total)
+            total = 0
+    cals.append(total)
+    if len(cals) <= 3:
+        return sum(cals)
+    cals.sort(reverse=True)
+    return sum(cals[0:3])
 
 

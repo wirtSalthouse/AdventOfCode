@@ -1,5 +1,6 @@
 import unittest
 from day1.main import count_calories
+from day1.main import top_three_elves
 
 class ElfLines(unittest.TestCase):
     def test_one_elf_one_load_line(self):
@@ -36,6 +37,33 @@ class ElfLines(unittest.TestCase):
         self.assertEqual(count_calories(elves), (1, 2000))
         complicated_elves = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000\n\n7000\n8000\n9000"
         self.assertEqual(count_calories(complicated_elves), (4, 24000))
+
+class TopThreeElves(unittest.TestCase):
+
+    def test_only_one_elf(self):
+        one_elf_one_load = '3000'
+        self.assertEqual(top_three_elves(one_elf_one_load), 3000)
+        one_elf_many_loads = "1000\n2000\n3000"
+        self.assertEqual(top_three_elves(one_elf_many_loads), 6000)
+
+    def test_two_elves(self):
+        two_elves_one_load = '3000\n\n3000'
+        self.assertEqual(top_three_elves(two_elves_one_load), 6000)
+        two_elves_many_loads = '1000\n2000\n3000\n\n4000'
+        self.assertEqual(top_three_elves(two_elves_many_loads), 10000)
+
+    def test_three_elves(self):
+        three_elves_1 = '1000\n2000\n3000\n\n4000\n\n5000'
+        self.assertEqual(top_three_elves(three_elves_1), 15000)
+        three_elves_2 = '9000\n\n10000\n\n7000\n8000\n9000'
+        self.assertEqual(top_three_elves(three_elves_2), 43000)
+
+    def test_top_three_elves(self):
+        complicated_elves = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000\n\n7000\n8000\n9000"
+        self.assertEqual(top_three_elves(complicated_elves), 59000)
+        complicated_elves_2 = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000\n\n7000\n8000\n8000"
+        self.assertEqual(top_three_elves(complicated_elves_2), 58000)
+
 
 if __name__ == '__main__':
     unittest.main()
