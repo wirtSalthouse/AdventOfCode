@@ -16,6 +16,17 @@ def common_item(sack):
             return ch
     return False
 
+
+def find_badge(sack_arr):
+    s1 = set(sack_arr[0])
+    s2 = set(sack_arr[1])
+    s3 = set(sack_arr[2])
+    intersection = s1.intersection(s2.intersection(s3))
+    for i in intersection:
+        return i
+    return False
+
+
 def char_score(ch):
     unicode = ord(ch)
     uni_a_lower = ord('a')
@@ -25,3 +36,16 @@ def char_score(ch):
     if uni_a_upper <= unicode <= ord('Z'):
         return unicode - uni_a_upper + 27
     return False
+
+
+def badge_score(sacks):
+    sack_list = sacks.split()
+    if len(sack_list) % 3 != 0:
+        return False
+
+    score = 0
+    i = 0
+    while i < len(sack_list):
+        score += char_score(find_badge(sack_list[i: i + 3]))
+        i += 3
+    return score
