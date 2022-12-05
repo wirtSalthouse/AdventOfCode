@@ -31,8 +31,10 @@ def pairs_overlap(pair_string):
         ranges[1] = temp
     return greater_or_equal_than(ranges[0][1], ranges[1][0])
 
+
 def greater_or_equal_than(a, b):
     return int(a) >= int(b)
+
 
 def get_ranges(pair_string):
     pairs = pair_string.split(',')
