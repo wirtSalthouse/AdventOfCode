@@ -29,10 +29,15 @@ class SupplyStack:
                 j += 1
         return return_arr
 
+    def move_boxes_unorderd(self):
+        return self.move_all_boxes( False)
 
-    def move_all_boxes(self):
+    def move_boxes_ordered(self):
+        return self.move_all_boxes(True)
+
+    def move_all_boxes(self, ordered=True):
         for instruction in self.instructions.split('\n'):
-            self.move_boxes(instruction)
+            self.move_boxes(instruction, ordered)
 
     def move_boxes(self, instruction, preserve_order=False):
         #assumes uniformity with instructions
