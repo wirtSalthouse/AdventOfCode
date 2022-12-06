@@ -29,15 +29,27 @@ class SupplyStack:
                 j += 1
         return return_arr
 
-    def move_boxes(self, instruction):
+
+    def move_all_boxes(self):
+        for instruction in self.instructions.split('\n'):
+            self.move_boxes(instruction)
+
+    def move_boxes(self, instruction, preserve_order=False):
         #assumes uniformity with instructions
         instruction_array = instruction.split()
         for i in range(3):
             j = 2 * i + 1
             instruction_array[j] = int(instruction_array[j])
+
+        move_cluster = []
         for i in range(instruction_array[1]):
             box = self.stack[instruction_array[3] - 1].pop()
-            self.stack[instruction_array[5] - 1].append(box)
+            if preserve_order:
+                move_cluster.insert(0, box)
+            else:
+                move_cluster.append(box)
+
+        self.stack[instruction_array[5] - 1] += move_cluster
 
     def get_top_crates(self):
         top = []

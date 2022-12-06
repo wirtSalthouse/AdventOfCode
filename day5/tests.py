@@ -3,7 +3,7 @@ import unittest
 from day5.main import SupplyStack
 
 
-class SettersAndGetters(unittest.TestCase):
+class PartOne(unittest.TestCase):
     def test_stack_representation(self):
         f = open('test_input_1.txt', 'r')
         nput = f.read()
@@ -51,6 +51,20 @@ class SettersAndGetters(unittest.TestCase):
         top_crates_2 = ['M', '', 'Z']
         self.assertEqual(stax.get_top_crates(), top_crates_2)
 
+class PartTwo(unittest.TestCase):
+    def test_order_preserve_move_boxes(self):
+        f = open('test_input_1.txt', 'r')
+        nput = f.read()
+        f.close()
+        stax = SupplyStack(nput)
+        stax.set_stack([['Z', 'N', 'D'], ['M', 'C'], ['P']])
+        stax.move_boxes('move 3 from 1 to 3', True)
+        answer_1 = [[], ['M', 'C'], ['P', 'Z', 'N', 'D']]
+        self.assertEqual(stax.get_stack(), answer_1)
+        stax.set_stack([['Z', 'N'], ['M', 'C', 'D'], ['P']])
+        stax.move_boxes('move 2 from 2 to 1', True)
+        answer_2 = [['Z', 'N', 'C', 'D'], ['M'], ['P']]
+        self.assertEqual(stax.get_stack(), answer_2)
 
 if __name__ == '__main__':
     unittest.main()
